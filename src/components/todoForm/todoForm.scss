@@ -1,16 +1,18 @@
 .todoForm {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
+  width: 60%;
+  margin: 0 auto;
 
   input {
-    width: 60%;
+    width: 90%;
     padding: 10px;
   }
 
   button {
-    padding: 10px 30px;
+    width: 10%;
+    padding: 10px;
     background-color: white;
     border: 1px solid gray;
     cursor: pointer;
