@@ -1,8 +1,9 @@
 .todoList {
   margin-top: 30px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 
   span {
     color: gray;

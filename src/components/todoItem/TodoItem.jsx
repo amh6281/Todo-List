@@ -1,25 +1,25 @@
 import React, { useState } from "react";
 import "./todoItem.scss";
+import axios from "axios";
 
-const TodoItem = () => {
+const TodoItem = ({ content, id, onDelete }) => {
   const [checked, setChecked] = useState(false);
 
   const handleChecked = () => {
     setChecked((prev) => !prev);
   };
 
+  const handleDelete = async () => {
+    onDelete(id);
+  };
+
   return (
     <div className={`todoItem ${checked ? "checked" : ""}`}>
       <div className="itemWrapper">
         <input type="checkbox" checked={checked} onChange={handleChecked} />
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid cum
-          id sint reprehenderit, quam minima tenetur. Ratione, reiciendis unde
-          praesentium minima vitae tempore dolores eius nesciunt asperiores
-          quidem a saepe.
-        </p>
+        <p>{content}</p>
         <button>수정</button>
-        <button>삭제</button>
+        <button onClick={handleDelete}>삭제</button>
       </div>
     </div>
   );
