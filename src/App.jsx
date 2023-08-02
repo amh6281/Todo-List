@@ -6,6 +6,8 @@ import "./global.scss";
 import axios from "axios";
 
 function App() {
+  // TodoForm 컴포넌트에서 추가 시 input이 ""가 되고, 변경된 input으로 인해 fetchTodos 호출
+  const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -20,12 +22,13 @@ function App() {
       }
     };
     fetchTodos();
-  }, []);
+  }, [input]);
+  console.log(todos);
 
   return (
     <div className="container">
       <Header />
-      <TodoForm />
+      <TodoForm input={input} setInput={setInput} />
       <TodoList todos={todos.value} />
     </div>
   );

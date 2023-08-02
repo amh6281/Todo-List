@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import "./todoForm.scss";
 import axios from "axios";
 
-const TodoForm = () => {
-  const [input, setInput] = useState("");
-
+const TodoForm = ({ input, setInput }) => {
   const handleChange = (e) => {
     setInput(e.target.value);
   };
