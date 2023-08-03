@@ -3,6 +3,13 @@
   align-items: center;
   gap: 10px;
 
+  &.dimmed {
+    button {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
   input {
     width: 90%;
     padding: 10px;

@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <TodoForm input={input} setInput={setInput} />
+      <TodoForm input={input} setInput={setInput} todos={todos} />
       <TodoList todos={todos.value} />
     </div>
   );
