@@ -11,7 +11,13 @@ const TodoItem = ({ content, id, onDelete, onEdit }) => {
   };
 
   const handleDelete = async () => {
-    onDelete(id);
+    if (
+      window.confirm(
+        "할 일을 삭제하시겠습니까?\n삭제 한 할 일은 복구할 수 없습니다."
+      )
+    ) {
+      onDelete(id);
+    }
   };
 
   const handleSave = async () => {
@@ -41,6 +47,7 @@ const TodoItem = ({ content, id, onDelete, onEdit }) => {
           <input
             type="text"
             value={editContent}
+            maxLength="50"
             onChange={(e) => setEditContent(e.target.value)}
           />
         ) : (
