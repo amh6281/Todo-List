@@ -27,6 +27,21 @@ const TodoList = ({ todos }) => {
     }
   };
 
+  // TodoItem 수정 기능 함수
+  const handleEdit = async (id, content) => {
+    try {
+      await axios.patch(`http://localhost:8080/api/v1/todos/${id}`, {
+        content: content,
+      });
+      const updatedTodos = todoList.map((item) =>
+        item.id === id ? { ...item, content } : item
+      );
+      setTodoList(updatedTodos);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="todoList">
       {todoList?.length === 0 && <span>등록된 [할 일]이 없습니다.</span>}
@@ -36,6 +51,7 @@ const TodoList = ({ todos }) => {
           content={item.content}
           id={item.id}
           onDelete={handleDelete}
+          onEdit={handleEdit}
         />
       ))}
     </div>

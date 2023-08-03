@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import "./todoItem.scss";
-import axios from "axios";
 
-const TodoItem = ({ content, id, onDelete }) => {
+const TodoItem = ({ content, id, onDelete, onEdit }) => {
   const [checked, setChecked] = useState(false);
+  const [edit, setEdit] = useState(false); // 수정 모드 여부
+  const [editContent, setEditContent] = useState(content); // 수정된 내용
 
   const handleChecked = () => {
     setChecked((prev) => !prev);
@@ -13,13 +14,52 @@ const TodoItem = ({ content, id, onDelete }) => {
     onDelete(id);
   };
 
+  const handleSave = async () => {
+    // 버튼 클릭시 수정된 내용을 부모로 전달
+    // 부모 컴포넌트에서 서버에 수정을 요청하고 할 일 목록을 업데이트
+    onEdit(id, editContent);
+    // 수정 모드를 해제
+    setEdit(false);
+  };
+
+  const handleCancel = () => {
+    // 취소 버튼을 누르면 수정 모드를 해제하고 기존 내용으로 되돌린다.
+    setEdit(false);
+    setEditContent(content);
+  };
+
+  const handleEdit = () => {
+    setEdit(true);
+  };
+
   return (
     <div className={`todoItem ${checked ? "checked" : ""}`}>
       <div className="itemWrapper">
         <input type="checkbox" checked={checked} onChange={handleChecked} />
-        <p>{content}</p>
-        <button>수정</button>
-        <button onClick={handleDelete}>삭제</button>
+        {edit ? (
+          // 수정 모드일 때 텍스트 필드
+          <input
+            type="text"
+            value={editContent}
+            onChange={(e) => setEditContent(e.target.value)}
+          />
+        ) : (
+          // 수정 모드가 아닐 때는 텍스트
+          <p>{content}</p>
+        )}
+        {edit ? (
+          <>
+            {/* 수정 모드일 때는 수정 버튼이 "저장", 삭제 버튼이 "취소" */}
+            <button onClick={handleSave}>저장</button>
+            <button onClick={handleCancel}>취소</button>
+          </>
+        ) : (
+          <>
+            {/* 수정 모드가 아닐 때는 "수정", "삭제" */}
+            <button onClick={handleEdit}>수정</button>
+            <button onClick={handleDelete}>삭제</button>
+          </>
+        )}
       </div>
     </div>
   );
