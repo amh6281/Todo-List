@@ -30,9 +30,17 @@ const TodoList = ({ todos }) => {
   // TodoItem 수정 기능 함수
   const handleEdit = async (id, content) => {
     try {
+      // 이미 삭제된 할 일인지 확인
+      const isDeleted = !todoList.some((item) => item.id === id);
+      if (isDeleted) {
+        alert("이미 삭제된 [할 일]입니다.");
+        return;
+      }
+
       await axios.patch(`http://localhost:8080/api/v1/todos/${id}`, {
         content: content,
       });
+
       const updatedTodos = todoList.map((item) =>
         item.id === id ? { ...item, content } : item
       );
