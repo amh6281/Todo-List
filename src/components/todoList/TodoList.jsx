@@ -8,7 +8,13 @@ const TodoList = ({ todos }) => {
 
   // App component에서 받은 todos를 TodoList component에서 관리
   useEffect(() => {
-    setTodoList(todos);
+    // 생성일 오름차순
+    if (todos) {
+      const sortedTodos = [...todos].sort(
+        (a, b) => new Date(b.createdDateTime) - new Date(a.createdDateTime)
+      );
+      setTodoList(sortedTodos);
+    }
   }, [todos]);
 
   // TodoItem 삭제 기능 함수
