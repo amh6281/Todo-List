@@ -9,6 +9,11 @@ const TodoForm = ({ input, setInput }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // input 값이 없거나 공백일 경우 경고 메시지
+    if (input.trim() === "") {
+      alert("할일이 없습니다.");
+      return;
+    }
     try {
       const res = await axios.post("http://localhost:8080/api/v1/todos", {
         content: input,
