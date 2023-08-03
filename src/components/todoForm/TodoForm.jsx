@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./todoForm.scss";
 import axios from "axios";
 
 const TodoForm = ({ input, setInput, todos }) => {
+  const inputRef = useRef();
+
   const handleChange = (e) => {
     setInput(e.target.value);
   };
@@ -12,6 +14,7 @@ const TodoForm = ({ input, setInput, todos }) => {
     // input 값이 없거나 공백일 경우 경고 메시지
     if (input.trim() === "") {
       alert("할일이 없습니다.");
+      inputRef.current.focus();
       return;
     }
     // 할일이 10개인 경우
@@ -42,6 +45,7 @@ const TodoForm = ({ input, setInput, todos }) => {
         maxLength="50"
         onChange={handleChange}
         value={input}
+        ref={inputRef}
       />
       <button onClick={handleSubmit}>할 일 추가</button>
     </div>
