@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./todoItem.scss";
 
-const TodoItem = ({ content, id, onDelete, onEdit }) => {
-  const [checked, setChecked] = useState(false);
+const TodoItem = ({ content, id, onDelete, onEdit, checked }) => {
   const [edit, setEdit] = useState(false); // 수정 모드 여부
   const [editContent, setEditContent] = useState(content); // 수정된 내용
 
   const handleChecked = () => {
-    setChecked((prev) => !prev);
+    // 수정된 todoItem의 editContent, isCompleted를 부모 컴포넌트로 전달
+    onEdit(id, editContent, !checked);
   };
 
   const handleDelete = async () => {

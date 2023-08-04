@@ -22,6 +22,7 @@ const TodoForm = ({ input, setInput, todos }) => {
       alert("[할 일]은 최대 10개까지 등록할 수 있습니다.");
       return;
     }
+    // 10개 이하일 경우는 생성
     try {
       const res = await axios.post("http://localhost:8080/api/v1/todos", {
         content: input,
