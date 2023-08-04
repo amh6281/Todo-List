@@ -23,7 +23,7 @@ const TodoItem = ({ content, id, onDelete, onEdit, checked }) => {
   const handleSave = async () => {
     // 버튼 클릭시 수정된 내용을 부모로 전달
     // 부모 컴포넌트에서 서버에 수정을 요청하고 할 일 목록을 업데이트
-    onEdit(id, editContent);
+    onEdit(id, editContent, checked);
     // 수정 모드를 해제
     setEdit(false);
   };
