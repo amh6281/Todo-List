@@ -50,7 +50,7 @@ const TodoList = ({ todos }) => {
       console.log(err);
     }
   };
-  console.log(todoList);
+
   return (
     <div className="todoList">
       {todoList?.length === 0 && <span>등록된 [할 일]이 없습니다.</span>}
