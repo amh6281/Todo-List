@@ -10,7 +10,7 @@ const TodoItem = ({ content, id, onDelete, onEdit, checked }) => {
     onEdit(id, editContent, !checked);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
     if (
       window.confirm(
         "할 일을 삭제하시겠습니까?\n삭제 한 할 일은 복구할 수 없습니다."
@@ -20,7 +20,7 @@ const TodoItem = ({ content, id, onDelete, onEdit, checked }) => {
     }
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     // 버튼 클릭시 수정된 내용을 부모로 전달
     // 부모 컴포넌트에서 서버에 수정을 요청하고 할 일 목록을 업데이트
     onEdit(id, editContent, checked);
