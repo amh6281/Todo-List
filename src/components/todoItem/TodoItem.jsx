@@ -49,6 +49,7 @@ const TodoItem = ({ content, id, onDelete, onEdit, checked }) => {
             value={editContent}
             maxLength="50"
             onChange={(e) => setEditContent(e.target.value)}
+            className="editInput"
           />
         ) : (
           // 수정 모드가 아닐 때는 텍스트
