@@ -49,9 +49,10 @@ Todo-List/
 
 1. 프로젝트를 클론하거나 ZIP 파일 다운로드
 2. 터미널에서 프로젝트 디렉토리로 이동
-3. 필요한 패키지들을 설치: `npm install` or `yarn`
-4. 애플리케이션을 실행: `npm run dev` or `yarn run dev`
-5. 웹 브라우저에서 `http://localhost:5173`으로 접속하여 Todo List를 확인
+3. 필요한 패키지 설치: `npm install` or `yarn`
+4. Docker 실행
+5. 애플리케이션 실행: `npm run dev` or `yarn run dev`
+6. 웹 브라우저에서 `http://localhost:5173`으로 접속하여 Todo List를 확인
 
 ## 부가설명
 
