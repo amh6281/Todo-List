@@ -1,13 +1,22 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./todoForm.scss";
 import axios from "axios";
 
 const TodoForm = ({ input, setInput, todos }) => {
   const inputRef = useRef();
 
+  const [debounceInput, setDebounceInput] = useState("");
+
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setDebounceInput(e.target.value);
   };
+  // debounce 처리
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setInput(debounceInput);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [debounceInput, 500]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +54,7 @@ const TodoForm = ({ input, setInput, todos }) => {
         placeholder="내용을 입력한 후, 오른쪽에 [할 일 추가]를 클릭해 주세요."
         maxLength="50"
         onChange={handleChange}
-        value={input}
+        value={debounceInput}
         ref={inputRef}
       />
       <button onClick={handleSubmit}>할 일 추가</button>

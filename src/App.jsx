@@ -23,7 +23,6 @@ function App() {
     };
     fetchTodos();
   }, [input]);
-  console.log(todos);
 
   return (
     <div className="container">
